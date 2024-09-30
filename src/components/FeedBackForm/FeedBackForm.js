@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./FeedBackForm.css";
 
-const FeedBackForm = () => {
+const FeedBackForm = (props) => {
   const [enteredName, setEnteredName]=useState("");
   const [enteredRating, setEnteredRating]=useState("1");  
 
@@ -10,15 +10,15 @@ const FeedBackForm = () => {
   }
   const ratingChangeHandler=(event)=>{
     setEnteredRating(event.target.value);
-    console.log(event.target.value)
   }
   const formSubmitHandler=(event)=>{
     event.preventDefault();
     const feedBackData={
+        id: Math.random().toString(),
         name: enteredName,
         rating: enteredRating
     }
-    console.log(feedBackData);
+    props.onSaveFeedback(feedBackData);
     setEnteredName("");
     setEnteredRating("");
   }  
