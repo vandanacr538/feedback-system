@@ -3,7 +3,7 @@ import "./FeedBackForm.css";
 
 const FeedBackForm = (props) => {
   const [enteredName, setEnteredName]=useState("");
-  const [enteredRating, setEnteredRating]=useState("1");  
+  const [enteredRating, setEnteredRating]=useState(1);  
 
   const nameChangeHandler=(event)=>{
     setEnteredName(event.target.value);
@@ -25,6 +25,7 @@ const FeedBackForm = (props) => {
   return (
     <React.Fragment>
       <form onSubmit={formSubmitHandler}>
+        <h3>Feedback Form</h3>
         <div className="new-feedback_controls">
           <div className="new-feedback_control">
             <label htmlFor="name">Enter Your Name:</label>
