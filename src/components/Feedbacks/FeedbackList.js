@@ -10,8 +10,9 @@ const FeedbackList=(props)=>{
                     return (
                         <FeedbackItems 
                             key={feedback.id}
-                            name={feedback.name}
-                            rating={feedback.rating}
+                            feedback={feedback}
+                            onDeleteFeedback={props.onDeleteFeedback}
+                            onEditFeedback={props.onEditFeedback}
                         />
                     )
                 })}

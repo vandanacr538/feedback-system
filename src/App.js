@@ -9,6 +9,7 @@ function App() {
     {id:"2", name: "Ram", rating: "3"}
   ]);
   const [ratings, setRatings]=useState({"1":0, "2":0, "3":0, "4":0, "5":0});  
+  const [editFeedback, setEditFeedback] = useState("");
 
   useEffect(()=>{
     const countObj={"1":0, "2":0, "3":0, "4":0, "5":0};
@@ -30,13 +31,40 @@ function App() {
       })
     }
   }
+  const updateFeedbackHandler=(updatedData)=>{
+    setFeedbacks((prevFeedback)=>prevFeedback.map((feedback)=>{
+      if(updatedData.id===feedback.id){
+        return {...feedback, ...updatedData};
+      }
+      return feedback;
+    }))
+    if(updatedData.rating>0){
+      setRatings((prevRating)=>{
+        return ({...prevRating, [updatedData.rating]:prevRating[updatedData.rating]+1});
+      })
+    }
+    setEditFeedback("");
+  }
+  const deleteFeedbackHandler=(id)=>{
+    const updatedFeedbacks=feedbacks.filter((feedback)=>feedback.id!==id);
+    setFeedbacks(updatedFeedbacks);
+  } 
+  const editFeedbackHandler=(feedbackToEdit)=>{
+    setEditFeedback(feedbackToEdit);
+    console.log(feedbackToEdit)
+  }
+
 
   return (
     <React.Fragment>
       <h1>Feedback System</h1>
       <OverallRating ratings={ratings}/>
-      <FeedBackForm onSaveFeedback={saveFeedbackHandler}/>
-      <FeedbackList feedbacks={feedbacks}/>
+      <FeedBackForm onSaveFeedback={(editFeedback) ? updateFeedbackHandler: saveFeedbackHandler}
+        editFeedback={editFeedback}/>
+      <FeedbackList feedbacks={feedbacks} 
+        onDeleteFeedback={deleteFeedbackHandler}
+        onEditFeedback={editFeedbackHandler}
+      />
     </React.Fragment>
   );
 }

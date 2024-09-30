@@ -1,10 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./FeedBackForm.css";
 
 const FeedBackForm = (props) => {
   const [enteredName, setEnteredName]=useState("");
   const [enteredRating, setEnteredRating]=useState(1);  
+  const {editFeedback}=props;
 
+  useEffect(()=>{
+    if(editFeedback){
+        setEnteredName(editFeedback.name);
+        setEnteredRating(editFeedback.rating);
+    }
+  },[editFeedback]);
+  
   const nameChangeHandler=(event)=>{
     setEnteredName(event.target.value);
   }
@@ -14,7 +22,7 @@ const FeedBackForm = (props) => {
   const formSubmitHandler=(event)=>{
     event.preventDefault();
     const feedBackData={
-        id: Math.random().toString(),
+        id: editFeedback ? editFeedback.id : Math.random().toString(),
         name: enteredName,
         rating: enteredRating
     }
@@ -43,7 +51,7 @@ const FeedBackForm = (props) => {
           </div>
         </div>
         <div className="new-feedback_actions">
-          <button type="submit">SUBMIT</button>
+          <button type="submit">{editFeedback ? "Edit" : "SUBMIT"}</button>
         </div>
       </form>
     </React.Fragment>

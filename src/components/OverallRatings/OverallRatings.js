@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 const OverallRating=(props)=>{
     const {"1": one, "2":two,"3":three,"4":four,"5":five}=props.ratings;
