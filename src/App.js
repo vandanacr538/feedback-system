@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import FeedBackForm from './components/FeedBackForm/FeedBackForm';
 import FeedbackList from './components/Feedbacks/FeedbackList';
-import OverallRating from './components/OverallRatings/OverallRatings';
+import MainSection from './components/MainSection/MainSection';
 
 function App() {
   const [feedbacks, setFeedbacks]=useState([
@@ -58,9 +57,8 @@ function App() {
   return (
     <React.Fragment>
       <h1>Feedback System</h1>
-      <OverallRating ratings={ratings}/>
-      <FeedBackForm onSaveFeedback={(editFeedback) ? updateFeedbackHandler: saveFeedbackHandler}
-        editFeedback={editFeedback}/>
+      <MainSection ratings={ratings} onSaveFeedback={(editFeedback) ? updateFeedbackHandler: saveFeedbackHandler}
+                editFeedback={editFeedback}/>
       <FeedbackList feedbacks={feedbacks} 
         onDeleteFeedback={deleteFeedbackHandler}
         onEditFeedback={editFeedbackHandler}

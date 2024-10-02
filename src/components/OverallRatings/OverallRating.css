@@ -1,0 +1,19 @@
+.overall-rating{
+    background-color: #817668;
+    width: 40rem;
+    max-width: 95%;
+    margin: 5px 10px;
+}
+.rating-stars{
+    width: 50%;
+    margin: 10px;
+    color: #e7e3e3;
+}
+.rating-stars div{
+    font-size: 20px;
+    margin-top: 5px;
+}
+
+.rating-stars span{
+    margin-right: 10px;
+}

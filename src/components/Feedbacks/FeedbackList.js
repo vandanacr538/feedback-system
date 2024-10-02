@@ -1,9 +1,11 @@
 import React from "react";
 import FeedbackItems from "./FeedbackItem";
+import Card from "../UI/Card";
+import "./FeedbackList.css";
 
 const FeedbackList=(props)=>{
     return(
-        <React.Fragment>
+        <Card className="feedback-list">
             <h3>All Feedbacks</h3>
             <ul>
                 {props.feedbacks.map((feedback)=>{
@@ -17,7 +19,7 @@ const FeedbackList=(props)=>{
                     )
                 })}
             </ul>
-        </React.Fragment>
+        </Card>
     )
 }
 

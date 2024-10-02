@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./FeedBackForm.css";
+import Card from "../UI/Card";
 
 const FeedBackForm = (props) => {
   const [enteredName, setEnteredName]=useState("");
@@ -31,30 +32,30 @@ const FeedBackForm = (props) => {
     setEnteredRating("");
   }  
   return (
-    <React.Fragment>
-      <form onSubmit={formSubmitHandler}>
-        <h3>Feedback Form</h3>
-        <div className="new-feedback_controls">
-          <div className="new-feedback_control">
-            <label htmlFor="name">Enter Your Name:</label>
-            <input type="text" id="name" value={enteredName} onChange={nameChangeHandler}/>
+      <Card className="new-feedback">
+        <form onSubmit={formSubmitHandler}>
+          <h3>Feedback Form</h3>
+          <div className="new-feedback_controls">
+            <div className="new-feedback_control">
+              <label htmlFor="name">Enter Your Name:</label>
+              <input type="text" id="name" value={enteredName} onChange={nameChangeHandler}/>
+            </div>
+            <div className="new-feedback_control">
+              <label htmlFor="rating">Choose Rating:</label>
+              <select id="rating" value={enteredRating} onChange={ratingChangeHandler}>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+              </select>
+            </div>
           </div>
-          <div className="new-feedback_control">
-            <label htmlFor="rating">Choose Rating:</label>
-            <select id="rating" value={enteredRating} onChange={ratingChangeHandler}>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-            </select>
+          <div className="new-feedback_actions">
+            <button type="submit">{editFeedback ? "Edit" : "SUBMIT"}</button>
           </div>
-        </div>
-        <div className="new-feedback_actions">
-          <button type="submit">{editFeedback ? "Edit" : "SUBMIT"}</button>
-        </div>
-      </form>
-    </React.Fragment>
+        </form>
+      </Card>
   );
 };
 
